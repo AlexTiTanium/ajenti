@@ -79,6 +79,7 @@ class WebserverHost (object):
 
 
 class WebserverPlugin (SectionPlugin):
+    inflate = 'webserver_common:main'
     service_name = ''
     service_buttons = []
     hosts_available_dir = ''
@@ -86,7 +87,7 @@ class WebserverPlugin (SectionPlugin):
     template = ''
 
     def init(self):
-        self.append(self.ui.inflate('webserver_common:main'))
+        self.append(self.ui.inflate(self.inflate))
         self.binder = Binder(None, self)
         self.find_type('servicebar').buttons = self.service_buttons
         self.hosts_dir = AvailabilitySymlinks(self.hosts_available_dir, self.hosts_enabled_dir)
